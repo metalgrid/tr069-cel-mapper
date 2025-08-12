@@ -1,6 +1,6 @@
-# CEL Mapper
+# TR-069 CEL Mapper
 
-A production-grade Go library for mapping unstructured key-value data to strongly-typed domain objects using Google's Common Expression Language (CEL).
+A high-performance Go library for mapping TR-069/TR-181 device management paths to strongly-typed domain objects, with optional CEL (Common Expression Language) support for complex transformations.
 
 ## Features
 
@@ -16,7 +16,7 @@ A production-grade Go library for mapping unstructured key-value data to strongl
 ## Installation
 
 ```bash
-go get github.com/example/cel-mapper
+go get github.com/metalgrid/tr069-cel-mapper
 ```
 
 ## Quick Start
@@ -67,8 +67,8 @@ import (
     "fmt"
     "log"
     
-    "github.com/example/cel-mapper/pkg/mapper"
-    "github.com/example/cel-mapper/pkg/registry"
+    "github.com/metalgrid/tr069-cel-mapper/pkg/mapper"
+    "github.com/metalgrid/tr069-cel-mapper/pkg/registry"
 )
 
 func main() {

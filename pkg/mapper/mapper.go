@@ -6,9 +6,9 @@ import (
 	"sync"
 	"time"
 
-	"github.com/example/cel-mapper/pkg/builder"
-	"github.com/example/cel-mapper/pkg/registry"
-	"github.com/example/cel-mapper/pkg/types"
+	"github.com/metalgrid/tr069-cel-mapper/pkg/builder"
+	"github.com/metalgrid/tr069-cel-mapper/pkg/registry"
+	"github.com/metalgrid/tr069-cel-mapper/pkg/types"
 )
 
 type Mapper struct {

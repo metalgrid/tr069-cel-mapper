@@ -4,9 +4,9 @@ import (
 	"fmt"
 	"sync"
 
-	"github.com/example/cel-mapper/pkg/loader"
-	"github.com/example/cel-mapper/pkg/registry"
-	"github.com/example/cel-mapper/pkg/types"
+	"github.com/metalgrid/tr069-cel-mapper/pkg/loader"
+	"github.com/metalgrid/tr069-cel-mapper/pkg/registry"
+	"github.com/metalgrid/tr069-cel-mapper/pkg/types"
 	"github.com/google/cel-go/cel"
 	"github.com/google/cel-go/ext"
 )

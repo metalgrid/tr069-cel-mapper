@@ -4,8 +4,8 @@ import (
 	"fmt"
 	"log"
 
-	"github.com/example/cel-mapper/pkg/mapper"
-	"github.com/example/cel-mapper/pkg/registry"
+	"github.com/metalgrid/tr069-cel-mapper/pkg/mapper"
+	"github.com/metalgrid/tr069-cel-mapper/pkg/registry"
 )
 
 type Port struct {

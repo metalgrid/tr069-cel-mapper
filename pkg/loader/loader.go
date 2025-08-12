@@ -6,7 +6,7 @@ import (
 	"os"
 	"path/filepath"
 
-	"github.com/example/cel-mapper/pkg/types"
+	"github.com/metalgrid/tr069-cel-mapper/pkg/types"
 	"gopkg.in/yaml.v3"
 )
 

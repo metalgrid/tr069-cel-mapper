@@ -1,4 +1,4 @@
-module github.com/example/cel-mapper
+module github.com/metalgrid/tr069-cel-mapper
 
 go 1.24.6
 

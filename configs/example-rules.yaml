@@ -1,0 +1,31 @@
+version: "1.0"
+rules:
+  - name: port_rule
+    target: Port
+    route: 'path.matches("^InternetGatewayDevice\\.LANDevice\\.\\d+\\.LANEthernetInterfaceConfig\\.\\d+\\..*")'
+    entity_key: '"port:" + path.split(".")[4]'
+    fields:
+      - name: Name
+        when: 'path.endsWith(".Name")'
+        value: value
+      - name: Status
+        when: 'path.endsWith(".Status")'
+        value: value
+      - name: Utilization
+        when: 'path.endsWith(".X_Vendor.Utilization")'
+        value: 'double(value.replace("%", ""))'
+
+  - name: wifi_rule
+    target: Wifi
+    route: 'path.matches("^InternetGatewayDevice\\.LANDevice\\.\\d+\\.WLANConfiguration\\.\\d+\\..*")'
+    entity_key: '"wifi:" + path.split(".")[4]'
+    fields:
+      - name: SSID
+        when: 'path.endsWith(".SSID")'
+        value: value
+      - name: Band
+        when: 'path.endsWith(".OperatingFrequencyBand")'
+        value: value
+      - name: Channel
+        when: 'path.endsWith(".Channel")'
+        value: 'int(value)'

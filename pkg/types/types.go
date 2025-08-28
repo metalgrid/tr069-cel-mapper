@@ -3,6 +3,7 @@ package types
 import (
 	"fmt"
 	"reflect"
+	"sync"
 
 	"github.com/google/cel-go/cel"
 )
@@ -72,6 +73,7 @@ type Store interface {
 }
 
 type MapStore struct {
+	mu   sync.RWMutex
 	data map[string]map[string]any
 }
 
@@ -82,6 +84,9 @@ func NewMapStore() *MapStore {
 }
 
 func (s *MapStore) Upsert(target, key string, factory func() any) any {
+	s.mu.Lock()
+	defer s.mu.Unlock()
+
 	group, ok := s.data[target]
 	if !ok {
 		group = make(map[string]any)
@@ -97,6 +102,9 @@ func (s *MapStore) Upsert(target, key string, factory func() any) any {
 }
 
 func (s *MapStore) Get(target, key string) (any, bool) {
+	s.mu.RLock()
+	defer s.mu.RUnlock()
+
 	group, ok := s.data[target]
 	if !ok {
 		return nil, false
@@ -106,6 +114,9 @@ func (s *MapStore) Get(target, key string) (any, bool) {
 }
 
 func (s *MapStore) GetAll(target string) map[string]any {
+	s.mu.RLock()
+	defer s.mu.RUnlock()
+
 	group, ok := s.data[target]
 	if !ok {
 		return nil
@@ -118,6 +129,9 @@ func (s *MapStore) GetAll(target string) map[string]any {
 }
 
 func (s *MapStore) ForEach(fn func(target, key string, obj any) error) error {
+	s.mu.RLock()
+	defer s.mu.RUnlock()
+
 	for target, group := range s.data {
 		for key, obj := range group {
 			if err := fn(target, key, obj); err != nil {
@@ -129,5 +143,8 @@ func (s *MapStore) ForEach(fn func(target, key string, obj any) error) error {
 }
 
 func (s *MapStore) Clear() {
+	s.mu.Lock()
+	defer s.mu.Unlock()
+
 	s.data = make(map[string]map[string]any)
 }
